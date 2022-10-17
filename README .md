@@ -5,12 +5,18 @@ https://user-images.githubusercontent.com/103250661/190868849-1fad59e4-c2f0-4baf
 # Fashion Recommended System
 
 - A website where a user can upload an image (of a dress, watch, or shoe) and get products that are similar (visually) to the supplied image.
-- Images are taken from the kaggle  [dataset](https://www.kaggle.com/paramaggarwal/fashion-product-images-small).
 
-
+Working
+-
 
 ![working](https://user-images.githubusercontent.com/103250661/196235150-1c0b0e75-f674-4188-a4c5-8cc4d30813a9.png)
+Predicting
+-
+
+
 ![predicting](https://user-images.githubusercontent.com/103250661/196235189-b6382535-c613-406c-b03a-b0b4bf0a1267.png)
+
+- Images are taken from the kaggle  [dataset](https://www.kaggle.com/paramaggarwal/fashion-product-images-small).
 
 
 Step -1 : Import Model

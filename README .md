@@ -7,14 +7,15 @@ https://user-images.githubusercontent.com/103250661/190868849-1fad59e4-c2f0-4baf
 - A website where a user can upload an image (of a dress, watch, or shoe) and get products that are similar (visually) to the supplied image.
 - Images are taken from the kaggle  [dataset](https://www.kaggle.com/paramaggarwal/fashion-product-images-small).
 
-Pre-requists
--
-- Deep Learning --> CNN
-- Transfer Learning --> ResNET50
+
+
+![working](https://user-images.githubusercontent.com/103250661/196235150-1c0b0e75-f674-4188-a4c5-8cc4d30813a9.png)
+![predicting](https://user-images.githubusercontent.com/103250661/196235189-b6382535-c613-406c-b03a-b0b4bf0a1267.png)
+
 
 Step -1 : Import Model
 -
-- Importing CNN model, named ResNET50 which is trained on data set "imageNET" having high performance and accuracy, built in Keras Module.
+- First I imported a  CNN model, named ResNET50 having high performance and accuracy, built in Keras Module.
 
 ```
 import tensorflow
@@ -33,15 +34,15 @@ model = tensorflow.keras.Sequential([
 -> Taking the weights trained on "imagenet" dataset, creating own top layer, size of image(224,224,3) which is the standard size of image.
 
 
--> Not training the model, so ``` model.trainable = False ``` , since we are using weights trained on "imagenet" dataset.
+-> I did not train the model, so ``` model.trainable = False ``` , since I am using weights trained on "imagenet" dataset.
 
--> Now added top layer using GlobalMaxPooling2D(), to change shape of model  ``` from (None, 7, 7, 208 ) to (None, 2048) ```
+-> Now added top layer using GlobalMaxPooling2D(), to change the default shape of model  ``` from (None, 7, 7, 208 ) to (None, 2048) ```
 
 
 step -2 Extract Features
 -
 - Comparing one image with a large dataset of images pixel by pixel is difficult, which is ```224 x 224 x 3 x No. of images ```in dataset.
-- So, I extracted features(2048) of every image from the dataset. Now, the comparision is now changed to feature by feature, reduced to ```2048 x No. of images```.
+- So, I extracted features(2048) of every image from the dataset. Now, the comparision is now according to the feature by feature, reduced to ```2048 x No. of images```.
 
 
 ``` 
@@ -72,9 +73,9 @@ def extract_features(img_path,model):
 
 -> By using preprocess_input() function, the images are converted from RGB to BGR, then each color channel is zero-centerd with respect to imageNet dataset, without scaling.
 
--> With predict() function the image is given to the ResNet50 model and flatten() to get 2048 embeddings of the image.
+-> With predict() function the image is given to the ResNet50 model and flatten() to get 2048 features of the image.
 
--> Normalized all the values of the embeddings to range from 0 to 1, using norm() function.
+-> Normalized all the values of the features to range from 0 to 1, using norm() function.
 
 Step 3: Export features
 -
@@ -100,7 +101,7 @@ pickle.dump(filenames,open('filenames.pkl','wb'))
 
 Final step 4: Generating Recomendations
 -
-- In this step, I took a new_image and extracted features using the above created model. Then, I plotted the feature_list created in the above step and the new_image features in 2048 dimensions and returned the 5 closest vectors i.e., those image vectors which are closest to new_image vector.
+- In this step, I took a new_image and extracted features using the above model. Then, I plotted the feature_list created in the above step and the new_image features in 2048 dimensions and returned the 5 closest vectors i.e., those image vectors which are closest to new_image vector.
 
 ```
 from sklearn.neighbors import NearestNeighbors
